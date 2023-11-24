@@ -28,10 +28,7 @@ def generate_random_words(num_words, word_length):
     return words
 
 
-
 def allocate_group_and_roles(user_obj):
-    LearningStation.objects.create(id=uuid.uuid4(), user=user_obj)
-
     TOTAL_GROUPS_LIMIT = int(SystemSettings.objects.filter(key='total_groups').first().value)
     MEMBER_COUNT = int(SystemSettings.objects.filter(key='member_count').first().value)
 
@@ -268,4 +265,3 @@ class TreasureShow(APIView):
         return CustomResponse(
             response=treasure
         ).get_success_response()
-
