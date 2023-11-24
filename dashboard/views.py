@@ -187,7 +187,7 @@ class UserTreasureAPI(APIView):
             serializer.save()
 
             return CustomResponse(
-                general_message='success'
+                general_message='You unlocked a treasure'
             ).get_success_response()
 
         return CustomResponse(
