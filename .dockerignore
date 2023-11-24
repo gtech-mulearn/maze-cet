@@ -1,0 +1,24 @@
+
+.DS_Store
+._*
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__/
+*/__pycache__/
+*/*/__pycache__/
+
+
+media/
+logs/
+
+.README.md
+.git
+.gitignore
+.env
+.venv
+env/
+venv/
+.vscode
+.idea
