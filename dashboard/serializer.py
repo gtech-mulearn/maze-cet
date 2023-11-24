@@ -11,6 +11,7 @@ from .models import User, TreasureLog, ScanLog
 class UserRegisterSerializer(serializers.ModelSerializer):
     muid = serializers.CharField(required=False)
     image = serializers.CharField(required=False, allow_null=True)
+    password = serializers.CharField(required=False)
 
     class Meta:
         model = User
