@@ -54,11 +54,8 @@ class UserTreasureSerializer(serializers.ModelSerializer):
 
 
 class UserDetailsSerializer(serializers.ModelSerializer):
-    stalls_visited = serializers.SerializerMethodField()
-    total_stalls = serializers.SerializerMethodField()
     scanned_users = serializers.SerializerMethodField()
     roles = serializers.SerializerMethodField()
-    badges = serializers.SerializerMethodField()
     image = serializers.CharField(allow_null=True)
 
     class Meta:

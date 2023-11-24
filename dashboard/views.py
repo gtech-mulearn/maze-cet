@@ -112,7 +112,9 @@ class LoginWithMuid(APIView):
             response_data = response.json().get('response')
             response_data['id'] = uuid.uuid4()
             response_data['image'] = response_data.get('pro_pic')
+
             user_exists = User.objects.filter(muid=response_data.get('muid')).first()
+
             if not user_exists:
                 serializer = UserRegisterSerializer(data=response_data)
                 if serializer.is_valid():
