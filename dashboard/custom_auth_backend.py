@@ -5,6 +5,7 @@ from .models import User
 
 
 class MuidBackend(ModelBackend):
+
     def authenticate(self, request, muid=None, **kwargs):
         try:
             user = User.objects.get(Q(muid=muid) | Q(email=muid))

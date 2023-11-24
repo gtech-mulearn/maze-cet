@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     path('register/', views.UserRegisterAPI.as_view()),
+    path('login/', views.UserLoginAPI.as_view()),
 
     path('login-muid/', views.LoginWithMuid.as_view()),
     path('connect-muid/', views.ConnectWithMuid.as_view()),

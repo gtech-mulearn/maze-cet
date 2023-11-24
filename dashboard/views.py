@@ -5,6 +5,8 @@ import string
 import uuid
 from decouple import config
 from django.contrib.auth import authenticate
+from django.contrib.auth.hashers import check_password
+from django.contrib.auth.hashers import make_password
 from django.db.models import Case, When, Q, BooleanField, Count, Avg
 from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
@@ -76,6 +78,23 @@ class UserRegisterAPI(APIView):
             return CustomResponse(response=auth).get_success_response()
 
         return CustomResponse(response=serializer.errors).get_failure_response()
+
+
+class UserLoginAPI(APIView):
+    permission_classes = (AllowAny,)
+
+    def post(self, request):
+        muid = request.data.get('muid')
+        password = request.data.get('password')
+
+        user = User.objects.filter(Q(muid=muid) | Q(email=muid)).first()
+
+        if user:
+            if check_password(password, user.password):
+                authenticate(self.request, muid=muid)
+                auth = TokenGenerate().generate(user=user)
+                return CustomResponse(response=auth).get_success_response()
+        return CustomResponse(general_message="login failed").get_failure_response()
 
 
 class ConnectWithMuid(APIView):

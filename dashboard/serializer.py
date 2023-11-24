@@ -28,7 +28,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         validated_data['id'] = str(uuid.uuid4())
         validated_data['qr_code'] = str(uuid.uuid4())
         validated_data['is_active'] = True
-        validated_data['password'] = make_password(validated_data.get('password'))
+        validated_data['password'] = validated_data.get('password')
         validated_data['created_at'] = DateTimeUtils.get_current_utc_time()
 
         return User.objects.create_user(**validated_data)
